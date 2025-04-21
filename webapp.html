@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Find the Turtle!</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #f0f8ff;
+    }
+
+    .game-container {
+      position: relative;
+      display: inline-block;
+      margin-top: 20px;
+    }
+
+    .background-image {
+      width: 100%;
+      max-width: 600px;
+      border-radius: 10px;
+    }
+
+    .turtle {
+      position: absolute;
+      font-size: 24px;
+      cursor: pointer;
+      display: none;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: green;
+      font-weight: bold;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌴 Find the Turtle! 🐢</h1>
+
+  <div class="game-container" id="game">
+    <img src="../js/mauibeauty.JPG" alt="Beach Background" class="background-image" id="bg">
+    <div class="turtle" id="turtle">🐢</div>
+  </div>
+
+  <div class="message" id="message"></div>
+  <button onclick="resetGame()">Reset Game</button>
+
+  <script>
+    const turtle = document.getElementById('turtle');
+    const message = document.getElementById('message');
+    const bg = document.getElementById('bg');
+
+    function placeTurtle() {
+      const container = document.getElementById('game');
+      const containerRect = container.getBoundingClientRect();
+
+      const maxX = container.offsetWidth - 24;
+      const maxY = container.offsetHeight - 24;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      turtle.style.left = `${randomX}px`;
+      turtle.style.top = `${randomY}px`;
+      turtle.style.display = 'block';
+      message.textContent = '';
+    }
+
+    turtle.onclick = function () {
+      message.textContent = "You found the turtle! 🐢✨";
+    };
+
+    function resetGame() {
+      placeTurtle();
+    }
+
+    window.onload = function () {
+      placeTurtle();
+    };
+  </script>
+
+</body>
+</html>
